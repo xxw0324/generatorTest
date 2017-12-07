@@ -1,0 +1,21 @@
+classPath=C:\\Users\\Administrator\\.m2\\repository\\mysql\\mysql-connector-java\\5.1.21\\mysql-connector-java-5.1.21.jar
+driverClass=com.mysql.jdbc.Driver
+connectionURL=jdbc:mysql://192.168.2.191:3306/xzj?useUnicode=true&amp;characterEncoding=UTF-8
+userId=root
+password=root
+targetProject=E:\\eclipse\\workspace\\zp-zz-idaccess
+targetPackageBase=com.zhongpin.zz.xzj.idaccess.dao
+
+################################ after this , you should change your own bussiness code ############## 
+
+## myBussinessPackage : based on 'com/alexgaoyh/MutiModule/Dubbo/RWSeperate/persist' part ;
+myBussinessPackage=auto
+
+## table Element : tableName part, your database table name
+tableName=pla_user
+
+## table Element : domainObjectName part, your domain name(javaBean class name)
+domainObjectName=PlaUser
+
+## table Element : alias part, your own database table alias name
+alias=pla_user

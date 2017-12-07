@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhongpin.inventory.persist.auto.mapper.SolrtestBaseMapper" >
+  <resultMap id="BaseResultMap" type="com.zhongpin.inventory.persist.auto.entity.SolrtestBase" >
+    <id column="solrtest_base_id" property="id" jdbcType="INTEGER" />
+    <result column="solrtest_base_no" property="no" jdbcType="VARCHAR" />
+    <result column="solrtest_base_name" property="name" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    solrtest_base.id as solrtest_base_id, solrtest_base.no as solrtest_base_no, solrtest_base.name as solrtest_base_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from solrtest_base solrtest_base
+    where solrtest_base.id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from solrtest_base
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zhongpin.inventory.persist.auto.entity.SolrtestBase" >
+    insert into solrtest_base (id, no, name)
+    values (#{id,jdbcType=INTEGER}, #{no,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhongpin.inventory.persist.auto.entity.SolrtestBase" >
+    insert into solrtest_base
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="no != null" >
+        no,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="no != null" >
+        #{no,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhongpin.inventory.persist.auto.entity.SolrtestBase" >
+    update solrtest_base
+    <set >
+      <if test="no != null" >
+        no = #{no,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhongpin.inventory.persist.auto.entity.SolrtestBase" >
+    update solrtest_base
+    set no = #{no,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <sql id="OracleDialectPrefix" >
+    <if test="page != null and _databaseId == 'oracle'" >
+      select * from ( select row_.*, rownum rownum_ from ( 
+    </if>
+  </sql>
+  <sql id="OracleDialectSuffix" >
+    <if test="page != null and _databaseId == 'oracle'" >
+      <![CDATA[ ) row_ ) where rownum_ > #{page.begin} and rownum_ <= #{page.end} ]]>
+    </if>
+  </sql>
+  <sql id="MysqlDialect" >
+    <if test="page != null and _databaseId == 'mysql'" >
+      limit #{page.begin} , #{page.length}
+    </if>
+  </sql>
+  <select id="selectCountByMap" parameterType="map" resultType="int" >
+    select count(*) from  solrtest_base solrtest_base <include refid="Base_Query_Map_Condition" /> 
+  </select>
+  <select id="selectListByMap" parameterType="map" resultMap="BaseResultMap" >
+     <include refid="OracleDialectPrefix" /> select <include refid="Base_Column_List" /> from  solrtest_base solrtest_base <include refid="Base_Query_Map_Condition" />  order by  id desc <include refid="OracleDialectSuffix" /><include refid="MysqlDialect" /> 
+  </select>
+  <sql id="Base_Query_Map_Condition" >
+    <trim prefix="where" prefixOverrides="and | or" >
+      <if test="id != null and id != ''" >
+         AND solrtest_base.id = #{id,jdbcType=INTEGER}
+      </if>
+      <if test="no != null and no != ''" >
+         AND solrtest_base.no = #{no,jdbcType=VARCHAR}
+      </if>
+      <if test="name != null and name != ''" >
+         AND solrtest_base.name = #{name,jdbcType=VARCHAR}
+      </if>
+      <if test="myGreater_id != null and myGreater_id != ''" >
+         AND solrtest_base.id &gt; #{myGreater_id,jdbcType=INTEGER}
+      </if>
+      <if test="myGreater_no != null and myGreater_no != ''" >
+         AND solrtest_base.no &gt; #{myGreater_no,jdbcType=VARCHAR}
+      </if>
+      <if test="myGreater_name != null and myGreater_name != ''" >
+         AND solrtest_base.name &gt; #{myGreater_name,jdbcType=VARCHAR}
+      </if>
+      <if test="myLesser_id != null and myLesser_id != ''" >
+         AND solrtest_base.id &lt; #{myLesser_id,jdbcType=INTEGER}
+      </if>
+      <if test="myLesser_no != null and myLesser_no != ''" >
+         AND solrtest_base.no &lt; #{myLesser_no,jdbcType=VARCHAR}
+      </if>
+      <if test="myLesser_name != null and myLesser_name != ''" >
+         AND solrtest_base.name &lt; #{myLesser_name,jdbcType=VARCHAR}
+      </if>
+      <if test="myLike_id != null and myLike_id != ''" >
+         AND solrtest_base.id like CONCAT('%', #{myLike_id,jdbcType=INTEGER},'%' )
+      </if>
+      <if test="myLike_no != null and myLike_no != ''" >
+         AND solrtest_base.no like CONCAT('%', #{myLike_no,jdbcType=VARCHAR},'%' )
+      </if>
+      <if test="myLike_name != null and myLike_name != ''" >
+         AND solrtest_base.name like CONCAT('%', #{myLike_name,jdbcType=VARCHAR},'%' )
+      </if>
+      <if test="myLikeStart_id != null and myLikeStart_id != ''" >
+         AND solrtest_base.id like CONCAT('%', #{myLikeStart_id,jdbcType=INTEGER})
+      </if>
+      <if test="myLikeStart_no != null and myLikeStart_no != ''" >
+         AND solrtest_base.no like CONCAT('%', #{myLikeStart_no,jdbcType=VARCHAR})
+      </if>
+      <if test="myLikeStart_name != null and myLikeStart_name != ''" >
+         AND solrtest_base.name like CONCAT('%', #{myLikeStart_name,jdbcType=VARCHAR})
+      </if>
+      <if test="myLikeEnd_id != null and myLikeEnd_id != ''" >
+         AND solrtest_base.id like CONCAT( #{myLikeEnd_id,jdbcType=INTEGER},'%' )
+      </if>
+      <if test="myLikeEnd_no != null and myLikeEnd_no != ''" >
+         AND solrtest_base.no like CONCAT( #{myLikeEnd_no,jdbcType=VARCHAR},'%' )
+      </if>
+      <if test="myLikeEnd_name != null and myLikeEnd_name != ''" >
+         AND solrtest_base.name like CONCAT( #{myLikeEnd_name,jdbcType=VARCHAR},'%' )
+      </if>
+      <if test="myIn_id != null and myIn_id != ''" >
+         AND solrtest_base.id in <foreach item="item" index="index" collection="myIn_id" open="(" separator="," close=")"> #{item} </foreach>
+      </if>
+      <if test="myIn_no != null and myIn_no != ''" >
+         AND solrtest_base.no in <foreach item="item" index="index" collection="myIn_no" open="(" separator="," close=")"> #{item} </foreach>
+      </if>
+      <if test="myIn_name != null and myIn_name != ''" >
+         AND solrtest_base.name in <foreach item="item" index="index" collection="myIn_name" open="(" separator="," close=")"> #{item} </foreach>
+      </if>
+    </trim>
+  </sql>
+</mapper>
